@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="YLP.UWP.Member.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YLP.UWP.Member"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Gri></Gri>
+    </Grid>-->
+
+    <StackPanel Padding="5">
+        <TextBox x:Name="txtName" Header="用户名：" />
+        <PasswordBox x:Name="txtPwd" Header="密码：" />
+        <Button x:Name="btnLogin" Margin="0,10,0,0" Width="100" Content="登录" HorizontalAlignment="Center"
+                Click="Login_OnClick"/>
+
+        <Button x:Name="btnLoginAll" Margin="0,10,0,0" Width="100" Content="批量登录" HorizontalAlignment="Center"
+                Click="LoginAll_OnClick"/>
+
+        <Button x:Name="btnUpdateInfo"  Margin="0,10,0,0" Content="更新用户信息" HorizontalAlignment="Center"
+                Click="UpdateInfo_OnClick"/>
+
+        <ProgressRing Margin="0,10,0,0" Width="50" x:Name="progressRing"/>
+    </StackPanel>
+</Page>

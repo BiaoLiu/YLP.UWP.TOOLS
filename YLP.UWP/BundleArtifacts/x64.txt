@@ -1,0 +1,2 @@
+MainPackage=D:\Dev\GitHub\YLP.UWP\YLP.UWP\bin\x64\Debug\YLP.UWP_0.1.1.0_x64_Debug.appx
+SymbolPackage=D:\Dev\GitHub\YLP.UWP\YLP.UWP\AppPackages\YLP.UWP_0.1.1.0_Debug_Test\YLP.UWP_0.1.1.0_x64_Debug.appxsym
