@@ -128,6 +128,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="YLP.db" />
     <None Include="YLP.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
