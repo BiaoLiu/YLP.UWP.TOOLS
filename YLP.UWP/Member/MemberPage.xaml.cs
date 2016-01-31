@@ -52,5 +52,10 @@ namespace YLP.UWP.Member
             this.progressRing.IsActive = false;
             await new MessageDialog($"成功更新{count}条").ShowAsync();
         }
+
+        private void BackHome_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (RegisterPage));
+        }
     }
 }

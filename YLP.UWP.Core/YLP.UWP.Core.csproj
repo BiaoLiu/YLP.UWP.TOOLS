@@ -116,10 +116,12 @@
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Extensions\ParamterCheckExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Https\HttpRequestClient.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\MemberService.cs" />
     <Compile Include="Models\UArticle.cs" />

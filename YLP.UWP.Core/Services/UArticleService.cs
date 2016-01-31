@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
 using Newtonsoft.Json;
 using YLP.UWP.Core.Extensions;
 using YLP.UWP.Core.Https;
@@ -18,7 +20,7 @@ namespace YLP.UWP.Core.Services
             FormData.Clear();
 
             FormData["userid"] = otherUserId;
-            FormData["sessionId"] = sessionId;
+            FormData["sid"] = sessionId;
             FormData["deviceId"] = deviceId;
             FormData["type"] = type;
             FormData["tag"] = tag;
@@ -28,7 +30,7 @@ namespace YLP.UWP.Core.Services
             return await GetUArticles(pageIndex, pageSize);
         }
 
-        public async Task<OperationResult<List<UArticle>>> GetUArticles(Dictionary<string,string> dict,  int pageIndex, int pageSize)
+        public async Task<OperationResult<List<UArticle>>> GetUArticles(Dictionary<string, string> dict, int pageIndex, int pageSize)
         {
             FormData.Clear();
 
@@ -60,6 +62,34 @@ namespace YLP.UWP.Core.Services
         public async Task<OperationResult<List<UArticle>>> GetUArticles(int pageIndex, int pageSize)
         {
             return null;
+        }
+
+
+
+        public async Task<OperationResult> CreateUArticle(string userId, string sessionId, string title, string tags, string tool, IEnumerable<KeyValuePair<string, byte[]>> fileData)
+        {
+            FormData.Clear();
+
+            FormData["userid"] = userId;
+            FormData["sid"] = sessionId;
+            FormData["deviceId"] = title;
+            FormData["tags"] = tags;
+            FormData["tool"] = tool;
+            //FormData["pic"] = pic;
+
+            var result = new OperationResult<string>();
+
+            var response = await GetResponse(ServiceURL.UArticle_CreateUArticle, fileData);
+            result.Retcode = response?.GetNamedString("retcode");
+
+            if (response != null && result.Retcode?.CheckSuccess() == true)
+            {
+                var data = response.GetNamedObject("data");
+
+                //result.Data = data.GetNamedString("articleid");
+            }
+
+            return result;
         }
     }
 }

@@ -36,6 +36,8 @@ namespace YLP.UWP.Core.Models
 
         public string deviceid { get; set; }
 
+        public string type { get; set; }
+
         // public SmilieDto smilies { get; set; } = new SmilieDto();
     }
 

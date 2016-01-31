@@ -10,6 +10,8 @@ namespace YLP.UWP.Core.Models
     {
         public string userid { get; set; }
 
+        public string sid { get; set; }
+
         public string username { get; set; }
 
         public string usericon { get; set; }

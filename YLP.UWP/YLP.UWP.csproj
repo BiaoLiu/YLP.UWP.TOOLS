@@ -99,10 +99,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddUArticlePage.xaml.cs">
+      <DependentUpon>AddUArticlePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\ApiEnum.cs" />
+    <Compile Include="Common\HttpRequestClient.cs" />
     <Compile Include="Common\Repository.cs" />
     <Compile Include="Common\DbContext.cs" />
     <Compile Include="FileHelper.cs" />
@@ -146,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddUArticlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

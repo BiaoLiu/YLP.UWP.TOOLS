@@ -26,13 +26,12 @@
                        Padding="0,6,0,6">
             <!--顶部-->
             <Button Name="Home"
-                    Content="&#xE700;"
-                    FontFamily="Segoe MDL2 Assets"
+                    Content="回到主页"
                     FontSize="20"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignVerticalCenterWithPanel="True"
                     Background="Transparent"
-              
+                    Click="BackHome_OnClick"
                     >
             </Button>
             <TextBlock Name="PageTitle"
@@ -123,7 +122,9 @@
                                    Name="NewsTitle"
                                    FontWeight="Bold">
                             </TextBlock>
+                            
                             <TextBlock x:Name="txtUArticleId" Text="{x:Bind articleid}" Visibility="Collapsed"/>
+                            
                             <RelativePanel Grid.Row="2"                                  
                                        Padding="0,5,5,5">
                                 <Image Source="{x:Bind pics.url}"

@@ -4,8 +4,13 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,9 +21,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using YLP.UWP.Common;
 using YLP.UWP.Core;
+using YLP.UWP.Core.Https;
 using YLP.UWP.Core.Models;
 using YLP.UWP.Core.Services;
 using YLP.UWP.Core.ViewModels;
+using YLP.UWP.Member;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -94,7 +101,7 @@ namespace YLP.UWP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnComment_OnClick(object sender, RoutedEventArgs e)
+        private async void BtnComment_OnClick(object sender, RoutedEventArgs e)
         {
 
         }
@@ -132,6 +139,11 @@ namespace YLP.UWP
             ViewModel.DoRefresh();
 
             await ViewModel.LoadMoreItemsAsync(1);
+        }
+
+        private void BackHome_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));
         }
     }
 }

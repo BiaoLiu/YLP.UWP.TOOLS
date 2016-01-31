@@ -96,5 +96,10 @@ namespace YLP.UWP.Member
         {
             Frame.Navigate(typeof(MemberPage));
         }
+
+        private void BackHome_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));
+        }
     }
 }

@@ -11,8 +11,8 @@ namespace YLP.UWP.Core.Https
     /// </summary>
     public class ServiceURL
     {
-        //private const string Host = "http://testapi.yuleband.com/";
-        private const string Host = "http://localhost:24369/";
+        private const string Host = "http://testapi.yuleband.com/";
+        //private const string Host = "http://localhost:24369/";
 
         #region 会员模块
 
@@ -37,7 +37,13 @@ namespace YLP.UWP.Core.Https
         public const string UArticle_UArticleList = Host + "api/task-gettasklist";
 
 
+        public const string UArticle_CreateUArticle = Host + "api/task-createtask";
+
+
         public const string Common_CreateUserAction = Host + "api/common-createuseraction";
+
+
+        public const string Comment_CreateComment = Host + "api/comment-createcomment";
 
         #region 专题模块
 

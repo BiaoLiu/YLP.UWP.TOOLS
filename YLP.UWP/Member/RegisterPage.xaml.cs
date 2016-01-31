@@ -62,8 +62,6 @@ namespace YLP.UWP.Member
 
         private async void RegisterAll_OnClick(object sender, RoutedEventArgs e)
         {
-            #region 注册代码
-
             this.progressRing.IsActive = true;
             var repository = new RepositoryAsync();
 
@@ -84,13 +82,21 @@ namespace YLP.UWP.Member
 
             this.progressRing.IsActive = false;
             await new MessageDialog($"总共注册用户数：{count}").ShowAsync();
-
-            #endregion
         }
 
         private void Login_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void UArticle_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UAritclePage));
+        }
+
+        private void AddUArticle_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddUArticlePage));
         }
     }
 }

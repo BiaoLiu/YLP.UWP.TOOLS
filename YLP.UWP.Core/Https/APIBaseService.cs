@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,7 +23,7 @@ namespace YLP.UWP.Core.Https
         //应用ID
         private const string AppId = "1dce319b3a2ca219406de274767772cb";
 
-        public Dictionary<string, string> FormData=new Dictionary<string, string>();
+        public Dictionary<string, string> FormData = new Dictionary<string, string>();
 
         public MessageTipsDelegate MessageTipsHandler;
 
@@ -66,6 +67,35 @@ namespace YLP.UWP.Core.Https
                     }
                     return jsonData.GetNamedObject("data");
                 }
+                return jsonData;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 向服务器发送POST请求 返回JSON格式数据
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="checkRetcode"></param>
+        /// <returns></returns>
+        async public Task<JsonObject> GetResponse(string url, IEnumerable<KeyValuePair<string, byte[]>> fileData)
+        {
+            //构建请求参数字典
+            GenerateRequestParams();
+
+            var collection = new NameValueCollection();
+
+            foreach (var item in FormData)
+            {
+                collection["\""+item.Key+"\""] = item.Value ;
+            }
+
+            string response = await BaseService.SendPostFileRequestAsync(url, collection, fileData);
+            if (response != null)
+            {
+                var jsonData = JsonObject.Parse(response);
+
                 return jsonData;
             }
 

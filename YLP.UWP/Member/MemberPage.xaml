@@ -17,6 +17,9 @@
         <Button x:Name="btnUpdateInfo" Content="批量修改信息" HorizontalAlignment="Center" 
                 Click="UpdateInfoAll_OnClick"/>
 
+        <Button  Margin="0,10,0,0" Content="回到主页" HorizontalAlignment="Center"
+                Click="BackHome_OnClick"/>
+        
         <ProgressRing Margin="0,10,0,0" Width="50" x:Name="progressRing"/>
     </StackPanel>
 </Page>

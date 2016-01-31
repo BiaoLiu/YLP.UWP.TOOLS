@@ -24,6 +24,8 @@ namespace YLP.UWP.Core.Data
             {
                 DbFilePath = ApplicationData.Current.LocalFolder.Path + "\\" + DbFileName;
 
+               // DbFilePath = "ms-appx:///"+DbFileName;
+
                 //var folder = ApplicationData.Current.LocalFolder;
                 //await folder.CreateFileAsync("YLP.db", CreationCollisionOption.FailIfExists);
 
