@@ -12,7 +12,7 @@ namespace YLP.UWP.Core.Https
     public class ServiceURL
     {
         private const string Host = "http://testapi.yuleband.com/";
-        //private const string Host = "http://localhost:24369/";
+       // private const string Host = "http://localhost:24369/";
 
         #region 会员模块
 

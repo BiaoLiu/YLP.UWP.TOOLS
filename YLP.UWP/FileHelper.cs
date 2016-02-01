@@ -52,11 +52,11 @@ namespace YLP.UWP
         }
 
 
-        public static IEnumerable<IDictionary<string,string>> GetUserNameWithNickName()
+        public static IEnumerable<IDictionary<string, string>> GetUserNameWithNickName()
         {
             using (Stream stream = File.OpenRead("data.txt"))
             {
-                using (StreamReader reader = new StreamReader(stream,Encoding.UTF8))
+                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -97,6 +97,26 @@ namespace YLP.UWP
 
                         yield return dict;
                     }
+                }
+            }
+        }
+
+
+        public static List<string> GetComments()
+        {
+            using (Stream stream = File.OpenRead("comment.txt"))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    var list = new List<string>();
+                    while (!reader.EndOfStream)
+                    {
+                        var data = reader.ReadLine();
+
+                        list.Add(data);
+                    }
+
+                    return list;
                 }
             }
         }

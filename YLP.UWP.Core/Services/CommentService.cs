@@ -16,16 +16,16 @@ namespace YLP.UWP.Core.Services
         {
             FormData.Clear();
 
-            FormData["userid"] = comment.ToString();
+            FormData["userid"] = comment.userid;
             FormData["sid"] = comment.sid;
             FormData["deviceid"] = comment.deviceid;
             FormData["type"] = comment.type;
             FormData["articleid"] = comment.articleid;
             FormData["comment"] = comment.comment;
-            FormData["atuserid"] = comment.atuserid;
-            FormData["atcommentid"] = comment.atcommentid;
-            FormData["commentstyle"] = comment.commentstyle;
-            FormData["floor"] = comment.floor.ToString();
+            //FormData["atuserid"] = comment.atuserid;
+            //FormData["atcommentid"] = comment.atcommentid;
+            //FormData["commentstyle"] = comment.commentstyle;
+            //FormData["floor"] = comment.floor.ToString();
 
             var result = new OperationResult<string>();
 

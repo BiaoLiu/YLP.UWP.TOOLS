@@ -124,17 +124,27 @@ namespace YLP.UWP
             var repository = new RepositoryAsync();
             var users = await repository.GetRandomUsers(count);
 
+            var comments = FileHelper.GetComments();
+
+            count = 0;
             var api = new CommentService();
             foreach (var item in users)
             {
                 var comment = new Comment() { userid = item.UserId, sid = item.SessionId, deviceid = item.DeviceId, articleid = txtUArticleId.Text, type = "task" };
 
-                comment.comment = "";
+                var randon = new Random();
+                var index = randon.Next(comments.Count);
 
-                await api.CreateComment(comment);
+                comment.comment = comments[index];
+
+               var result= await api.CreateComment(comment);
+                if (result.Success)
+                {
+                    count++;
+                }
             }
 
-            await new MessageDialog("评论完成").ShowAsync();
+            await new MessageDialog($"{count}条评论完成").ShowAsync();
         }
 
 
