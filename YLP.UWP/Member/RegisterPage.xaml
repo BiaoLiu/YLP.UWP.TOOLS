@@ -18,10 +18,13 @@
         <TextBox x:Name="txtName" Header="用户名："/>
         <PasswordBox Margin="0,10,0,10" x:Name="txtPwd" Header="密码："/>
         <Button x:Name="btnRegister" Width="100" Content="注册" HorizontalAlignment="Center" Click="Register_OnClick"/>
+       
         <Button x:Name="btnRegisterAll" Margin="0,10,0,0" Width="100" Content="批量注册" HorizontalAlignment="Center"
                 Click="RegisterAll_OnClick"/>
 
-
+        <Button x:Name="btnUpateAvatarAll" Margin="0,10,0,0" Width="100" Content="更新头像" HorizontalAlignment="Center"
+                Click="UpdateAvatarAll_OnClick"/>
+        
         <Button x:Name="btnLogin"  Content="去登录" HorizontalAlignment="Center"
                 Click="Login_OnClick"/>
 

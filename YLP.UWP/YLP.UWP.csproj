@@ -127,6 +127,9 @@
     <Compile Include="UAritclePage.xaml.cs">
       <DependentUpon>UAritclePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateAvatar.xaml.cs">
+      <DependentUpon>UpdateAvatar.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -171,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UAritclePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateAvatar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

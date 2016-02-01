@@ -31,19 +31,33 @@ namespace YLP.UWP.Core.Https
         /// </summary>
         public const string Member_UpdateInfo = Host + "api/member-updateuserinfo";
 
+        /// <summary>
+        /// 更新会员头像
+        /// </summary>
+        public const string Member_UpdateAvatar = Host + "api/member-updateavatar";
+
         #endregion
 
-
+        /// <summary>
+        /// 获取用户作品列表
+        /// </summary>
         public const string UArticle_UArticleList = Host + "api/task-gettasklist";
 
-
+        /// <summary>
+        /// 新增用户作品
+        /// </summary>
         public const string UArticle_CreateUArticle = Host + "api/task-createtask";
 
-
+        /// <summary>
+        /// 创建用户行为
+        /// </summary>
         public const string Common_CreateUserAction = Host + "api/common-createuseraction";
 
-
+        /// <summary>
+        /// 新增评论
+        /// </summary>
         public const string Comment_CreateComment = Host + "api/comment-createcomment";
+
 
         #region 专题模块
 

@@ -121,5 +121,29 @@ namespace YLP.UWP.Core.Services
         }
 
         #endregion
+
+
+
+        public async Task<OperationResult> UpdateAvatar(string userId, string sessionId, IEnumerable<KeyValuePair<string, byte[]>> fileData)
+        {
+            FormData.Clear();
+
+            FormData["userid"] = userId;
+            FormData["sid"] = sessionId;
+         
+            var result = new OperationResult<string>();
+
+            var response = await GetResponse(ServiceURL.Member_UpdateAvatar, fileData);
+            result.Retcode = response?.GetNamedString("retcode");
+
+            if (response != null && result.Retcode?.CheckSuccess() == true)
+            {
+                var data = response.GetNamedObject("data");
+
+                //result.Data = data.GetNamedString("articleid");
+            }
+
+            return result;
+        }
     }
 }

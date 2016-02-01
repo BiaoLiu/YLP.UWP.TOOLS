@@ -73,8 +73,11 @@ namespace YLP.UWP
         /// <param name="e"></param>
         private async void BtnGoods_OnClick(object sender, RoutedEventArgs e)
         {
-            var txtCount = FindVisualChildByName<TextBox>(this.UArticleListView, "txtCount");
-            var txtUArticleId = FindVisualChildByName<TextBlock>(this.UArticleListView, "txtUArticleId");
+            var btn = sender as Button;
+            var selectedItem = FindVisualParent<ListViewItem>(btn);
+
+            var txtCount = FindVisualChildByName<TextBox>(selectedItem, "txtCount");
+            var txtUArticleId = FindVisualChildByName<TextBlock>(selectedItem, "txtUArticleId");
 
             int count = 0;
             if (!int.TryParse(txtCount.Text, out count))
@@ -103,7 +106,35 @@ namespace YLP.UWP
         /// <param name="e"></param>
         private async void BtnComment_OnClick(object sender, RoutedEventArgs e)
         {
+            // ListViewItem selectedItem = (ListViewItem)(UArticleListView.ItemContainerGenerator.ContainerFromItem(UArticleListView.SelectedItem));
 
+            var btn = sender as Button;
+            var selectedItem = FindVisualParent<ListViewItem>(btn);
+
+            var txtCount = FindVisualChildByName<TextBox>(selectedItem, "txtCount");
+            var txtUArticleId = FindVisualChildByName<TextBlock>(selectedItem, "txtUArticleId");
+
+            int count = 0;
+            if (!int.TryParse(txtCount.Text, out count))
+            {
+                await new MessageDialog("请输入数字").ShowAsync();
+                return;
+            }
+
+            var repository = new RepositoryAsync();
+            var users = await repository.GetRandomUsers(count);
+
+            var api = new CommentService();
+            foreach (var item in users)
+            {
+                var comment = new Comment() { userid = item.UserId, sid = item.SessionId, deviceid = item.DeviceId, articleid = txtUArticleId.Text, type = "task" };
+
+                comment.comment = "";
+
+                await api.CreateComment(comment);
+            }
+
+            await new MessageDialog("评论完成").ShowAsync();
         }
 
 
@@ -132,6 +163,29 @@ namespace YLP.UWP
             {
                 return null;
             }
+        }
+
+
+        /// <summary>
+        /// 利用VisualTreeHelper寻找指定依赖对象的父级对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static T FindVisualParent<T>(DependencyObject obj) where T : DependencyObject
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(obj);
+            if (parent != null)
+            {
+                if (parent is T)
+                {
+                    return parent as T;
+                }
+
+                return FindVisualParent<T>(parent);
+            }
+
+            return null;
         }
 
         private async void Refresh_OnClick(object sender, RoutedEventArgs e)

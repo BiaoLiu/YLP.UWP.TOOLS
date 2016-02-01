@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Perception.Spatial;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -97,6 +99,62 @@ namespace YLP.UWP.Member
         private void AddUArticle_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AddUArticlePage));
+        }
+
+        private async void UpdateAvatarAll_OnClick(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".png");
+            //openPicker.FileTypeFilter.Add(".gif");
+
+            var storageFiles = await openPicker.PickMultipleFilesAsync();
+            if (storageFiles == null)
+            {
+                await new MessageDialog("请选择图片").ShowAsync();
+                return;
+            }
+
+            this.progressRing.IsActive = true;
+
+            byte[] content = null;
+
+            // 获取指定的文件的文本内容
+
+            var count = 0;
+            foreach (var storageFile in storageFiles)
+            {
+                IRandomAccessStreamWithContentType accessStream = await storageFile.OpenReadAsync();
+
+                var fileName = storageFile.Name;
+
+                using (Stream stream = accessStream.AsStreamForRead((int)accessStream.Size))
+                {
+                    content = new byte[stream.Length];
+                    await stream.ReadAsync(content, 0, (int)stream.Length);
+                }
+
+                var fileData = new List<KeyValuePair<string, byte[]>>();
+                fileData.Add(new KeyValuePair<string, byte[]>(fileName, content));
+
+                var repository = new RepositoryAsync();
+                var users = await repository.GetRandomUsers(1);
+
+                var user = users.FirstOrDefault();
+
+                var api = new MemberService();
+
+                var result = await api.UpdateAvatar(user.UserId, user.SessionId, fileData);
+                if (result.Success)
+                {
+                    count++;
+                }
+            }
+
+            this.progressRing.IsActive = false;
+
+            await new MessageDialog($"{count}个用户头像更新成功").ShowAsync();
         }
     }
 }

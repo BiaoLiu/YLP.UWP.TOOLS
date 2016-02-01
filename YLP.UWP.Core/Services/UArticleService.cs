@@ -75,6 +75,7 @@ namespace YLP.UWP.Core.Services
             FormData["deviceId"] = title;
             FormData["tags"] = tags;
             FormData["tool"] = tool;
+            FormData["title"] = title;
             //FormData["pic"] = pic;
 
             var result = new OperationResult<string>();
